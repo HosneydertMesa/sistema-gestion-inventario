@@ -22,7 +22,7 @@ services:
         JAR_FILE: target/msProductos-0.0.1-SNAPSHOT.jar
     container_name: ms-productos
     ports:
-      - "8091:8091" # Mapea puerto (HOST:CONTENEDOR)
+      - "8091:8091"
     environment:
       - SERVER_PORT=8091
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/technical_test_db
@@ -47,7 +47,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/technical_test_db
       - SPRING_DATASOURCE_USERNAME=user
       - SPRING_DATASOURCE_PASSWORD=password
-      - SERVICES_PRODUCTS_URL=http://productos:8091 # ¡Comunicación por nombre de servicio!
+      - SERVICES_PRODUCTS_URL=http://productos:8091
       - SERVICES_PRODUCTS_API-KEY=mi-api-key-secreta
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
@@ -57,10 +57,9 @@ services:
     # Servicio del Frontend de React
   frontend-ui:
     build:
-      context: ./front-inventario # <-- Asegúrate de que esta ruta sea correcta
+      context: ./front-inventario
       dockerfile: Dockerfile
     ports:
-      # Mapea el puerto 93 de tu máquina al puerto 80 del contenedor Nginx
       - "93:80"
     depends_on:
       - productos
