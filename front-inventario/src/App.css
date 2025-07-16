@@ -1,0 +1,293 @@
+/* Estilos Generales */
+body {
+    background-color: #f3f4f6;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color: #111827;
+    margin: 0;
+}
+
+/* Contenedor Principal */
+.app-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Encabezado */
+.app-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.app-header h1 {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.app-header p {
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+/* Layout Principal */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .main-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.main-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Componente Card (para los contenedores blancos) */
+.card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card h2, .card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px #3b82f680;
+}
+
+/* Botones */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 600;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+}
+.btn-primary:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #4b5563;
+}
+.btn-secondary:hover:not(:disabled) {
+    background-color: #1f2937;
+}
+
+.btn-success {
+    background-color: #16a34a;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+.btn-success:hover:not(:disabled) {
+    background-color: #15803d;
+}
+
+.btn-warning {
+    background-color: #f59e0b;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+.btn-warning:hover:not(:disabled) {
+    background-color: #d97706;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+.btn-danger:hover:not(:disabled) {
+    background-color: #b91c1c;
+}
+
+.btn-purple {
+    background-color: #7c3aed;
+}
+.btn-purple:hover:not(:disabled) {
+    background-color: #6d28d9;
+}
+
+/* Tabla de Productos */
+.table-container {
+    overflow-x: auto;
+}
+
+.product-table {
+    min-width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+.product-table thead {
+    background-color: #f9fafb;
+}
+
+.product-table th, .product-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.875rem;
+    vertical-align: middle;
+}
+
+.product-table th {
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: uppercase;
+}
+
+.product-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.product-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.product-table .actions-cell {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Detalles de Inventario */
+.inventory-details p {
+    margin: 0.5rem 0;
+}
+.inventory-details strong {
+    font-weight: 600;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 1.5rem 0;
+}
+
+.update-stock-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Mensajes de Carga y Error */
+.text-center {
+    text-align: center;
+}
+.text-red {
+    color: #ef4444;
+}
+
+/* Estilos para el Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.modal-footer .btn {
+    padding: 0.5rem 1rem;
+}
+.modal-footer .btn-secondary {
+    background-color: #4b5563;
+}
+.modal-footer .btn-secondary:hover:not(:disabled) {
+    background-color: #374151;
+}

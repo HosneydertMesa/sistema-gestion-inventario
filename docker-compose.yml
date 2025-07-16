@@ -1,0 +1,78 @@
+
+
+services:
+  # Servicio de la Base de Datos PostgreSQL
+  db:
+    image: postgres:14-alpine
+    container_name: db_postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: technical_test_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Microservicio de Productos
+  productos:
+    build:
+      context: ./msProductos
+      args:
+        JAR_FILE: target/msProductos-0.0.1-SNAPSHOT.jar
+    container_name: ms-productos
+    ports:
+      - "8091:8091" # Mapea puerto (HOST:CONTENEDOR)
+    environment:
+      - SERVER_PORT=8091
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/technical_test_db
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SECURITY_API-KEY_SECRET=mi-api-key-secreta
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - db
+
+  # Microservicio de Inventario
+  inventario:
+    build:
+      context: ./msInventario
+      args:
+        JAR_FILE: target/msInventario-0.0.1-SNAPSHOT.jar
+    container_name: ms-inventario
+    ports:
+      - "8092:8092"
+    environment:
+      - SERVER_PORT=8092
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/technical_test_db
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SERVICES_PRODUCTS_URL=http://productos:8091 # ¡Comunicación por nombre de servicio!
+      - SERVICES_PRODUCTS_API-KEY=mi-api-key-secreta
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - db
+      - productos
+
+    # Servicio del Frontend de React
+  frontend-ui:
+    build:
+      context: ./front-inventario # <-- Asegúrate de que esta ruta sea correcta
+      dockerfile: Dockerfile
+    ports:
+      # Mapea el puerto 93 de tu máquina al puerto 80 del contenedor Nginx
+      - "93:80"
+    depends_on:
+      - productos
+      - inventario
+    networks:
+      - mi-red-app
+
+# Volumen para persistir los datos de la base de datos
+volumes:
+  postgres_data:
+
+# Red personalizada para la comunicación entre servicios
+networks:
+  mi-red-app:
+    driver: bridge

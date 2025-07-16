@@ -1,0 +1,47 @@
+# Archivos de compilación y artefactos de Java/Maven
+target/
+*.jar
+*.war
+*.ear
+
+# Archivos de log
+*.log
+
+# Archivos de IDEs
+.idea/
+*.iml
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
+!/.vscode/settings.json
+!/.vscode/tasks.json
+!/.vscode/launch.json
+!/.vscode/extensions.json
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Dependencias y artefactos de Node.js
+node_modules/
+dist/
+dist-ssr/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+/packages/
+/coverage
+
+
+.env
+.env.local
+.env.*.local
+
+
+# Archivos de Testcontainers
+.testcontainers.properties
+
